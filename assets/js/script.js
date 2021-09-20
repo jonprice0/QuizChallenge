@@ -1,5 +1,11 @@
+var setHighScore = function() {
+    if (localStorage.getItem("highscore") === null) {
+        localStorage.setItem("highscore", 0);
+    }
+};
+setHighScore();
+
 var timeLeft = 75;
-var score = 0;
 var i = 0
 var questionArr = [
     {
@@ -92,12 +98,16 @@ var evaluateAnswer = function(event) {
     }   
 };
 var endQuiz = function() {
+    if (timeLeft > localStorage.getItem("highscore")) {
+        localStorage.setItem("highscore", timeLeft)
+    };
+    console.log(localStorage);
     document.querySelector("h1").remove();
     document.querySelector("#btn1").remove();
     document.querySelector("#btn2").remove();
     document.querySelector("#btn3").remove();
     document.querySelector("#btn4").remove();
-    localStorage.setItem("score", timeLeft);
+    
 };
 var quizMode = function() {
         document.querySelector("p").remove();
